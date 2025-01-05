@@ -1,4 +1,4 @@
-package DictionaryProject.Entities;
+package AdvancedDictionaryProject.Entities;
 
 public class Definition {
     private String wordType,meaning, sentence, sentenceMeaning;

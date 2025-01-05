@@ -1,30 +1,33 @@
-package DictionaryProject;
+package AdvancedDictionaryProject;
 
 import DictionaryProject.Entities.*;
+import DictionaryProject.Request;
+import DictionaryProject.Service;
 
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Controller {
-
-    private final Service service = Service.getInstance();
+    private final DefinitionFactory adjDefinitionFactory = new AdjDefinitionFactory();
+    private final DefinitionFactory nounDefinitionFactory = new NounDefinitionFactory();
+    private DictionaryProject.Service service = Service.getInstance();
 
     public Controller() {
 
     }
 
-    public void handleRequest(Request request) {
+    public void handleRequest(DictionaryProject.Request request) {
 
         switch (request.getAction()) {
             case "lookup" -> handleLookup(request.getKeyword());
             case "define" -> handleDefine(request);
             case "drop" -> handleDrop(request.getKeyword());
             case "export" -> handleExport();
-            case "exit" -> handleExit();
             default -> System.out.println("UNKNOWN ACTION or WRONG SYNTAX!");
         }
-    }
-
-    public void handleExit(){
-        service.setExit();
     }
 
     /*----------------------------------------- LOOKUP ---------------------------------------------*/
@@ -58,7 +61,7 @@ public class Controller {
 
 
     /*----------------------------------------- DEFINE ---------------------------------------------*/
-    public String getWordTypeFromRequest(Request request){
+    public String getWordTypeFromRequest(DictionaryProject.Request request){
         switch (request.getParams().getFirst()){
             case "--adjective","-a" -> {
                 return "adjective";
@@ -81,7 +84,7 @@ public class Controller {
         }
     }
 
-    public Definition getDefinitionFromRequest(String wordType,Request request){
+    public Definition getDefinitionFromRequest(String wordType, DictionaryProject.Request request){
         switch (wordType){
             case "adjective" -> { return new AdjDefinitionFactory().createDefinition(
                     request.getParams().get(1),
@@ -144,6 +147,14 @@ public class Controller {
 
     public void handleExport() {
         service.export();
+//        String path1 = "/dicts/eng-vie.txt";
+//        String data ="sadsa";
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path1))){
+//            writer.write(data);
+//
+//        } catch (IOException e){
+//            System.out.println("An error happens "+ e.getMessage());
+//        }
     }
 
 

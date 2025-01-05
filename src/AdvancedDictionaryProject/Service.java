@@ -1,4 +1,4 @@
-package DictionaryProject;
+package AdvancedDictionaryProject;
 
 import DictionaryProject.Entities.*;
 
@@ -15,12 +15,10 @@ public class Service {
 
     private static Service instance;
     private final Map<String, Word> dictionary;
-    private boolean exit;
 
 
     private Service() {
         this.dictionary = new HashMap<>();
-        this.exit = false;
     }
 
     /*----------- SINGLETON ---------------*/
@@ -141,13 +139,5 @@ public class Service {
 
     public Map<String, Word> getDictionary() {
         return dictionary;
-    }
-
-    public boolean isExit() {
-        return exit;
-    }
-
-    public void setExit() {
-        this.exit = true;
     }
 }

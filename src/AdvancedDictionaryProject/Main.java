@@ -1,4 +1,8 @@
-package DictionaryProject;
+package AdvancedDictionaryProject;
+
+import DictionaryProject.Controller;
+import DictionaryProject.Dataset;
+import DictionaryProject.Request;
 
 import java.util.Scanner;
 
@@ -6,12 +10,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Service service = Service.getInstance();
 
         //------------------------------CREATE DATASET-------------------------------------------------------------
         new Dataset();
         //----------------------------------------------------------------------------------------------------
-        while (!service.isExit()) {
+        while (true) {
             Controller controller = new Controller();
             Scanner scanner = new Scanner(System.in);
 
