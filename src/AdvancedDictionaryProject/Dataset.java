@@ -1,11 +1,11 @@
 package AdvancedDictionaryProject;
 
 
-import DictionaryProject.Entities.AdjDefinitionFactory;
-import DictionaryProject.Entities.Definition;
-import DictionaryProject.Entities.DefinitionFactory;
-import DictionaryProject.Entities.Word;
-import DictionaryProject.Service;
+import AdvancedDictionaryProject.Entities.AdjDefinitionFactory;
+import AdvancedDictionaryProject.Entities.Definition;
+import AdvancedDictionaryProject.Entities.DefinitionFactory;
+import AdvancedDictionaryProject.Entities.Word;
+import AdvancedDictionaryProject.Service;
 
 import java.util.LinkedList;
 

@@ -1,8 +1,5 @@
 package AdvancedDictionaryProject.Entities;
 
-import DictionaryProject.Entities.Definition;
-
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Word {
@@ -22,6 +19,16 @@ public class Word {
         this.pronunciations = pronunciations;
         this.definitions = definitions;
         this.synonyms = synonyms;
+    }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "text='" + text + '\'' +
+                ", definitions=" + definitions +
+                ", pronunciations=" + pronunciations +
+                ", synonyms=" + synonyms +
+                '}';
     }
 
     public String getText() {
@@ -55,4 +62,10 @@ public class Word {
     public void setSynonyms(LinkedList<String> synonyms) {
         this.synonyms = synonyms;
     }
+
+    public void addPronunciation(String pronunciation){ this.pronunciations.add(pronunciation);}
+
+    public void addSynonym(String synonym){ this.synonyms.add(synonym);}
+
+    public void addDefinition(Definition definition){ this.definitions.add(definition);}
 }

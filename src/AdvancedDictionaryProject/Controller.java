@@ -1,25 +1,16 @@
 package AdvancedDictionaryProject;
 
-import DictionaryProject.Entities.*;
-import DictionaryProject.Request;
-import DictionaryProject.Service;
-
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import AdvancedDictionaryProject.Entities.*;
 
 public class Controller {
-    private final DefinitionFactory adjDefinitionFactory = new AdjDefinitionFactory();
-    private final DefinitionFactory nounDefinitionFactory = new NounDefinitionFactory();
-    private DictionaryProject.Service service = Service.getInstance();
+
+    private Service service = Service.getInstance();
 
     public Controller() {
 
     }
 
-    public void handleRequest(DictionaryProject.Request request) {
+    public void handleRequest(Request request) {
 
         switch (request.getAction()) {
             case "lookup" -> handleLookup(request.getKeyword());
@@ -61,7 +52,7 @@ public class Controller {
 
 
     /*----------------------------------------- DEFINE ---------------------------------------------*/
-    public String getWordTypeFromRequest(DictionaryProject.Request request){
+    public String getWordTypeFromRequest(Request request){
         switch (request.getParams().getFirst()){
             case "--adjective","-a" -> {
                 return "adjective";
@@ -84,7 +75,7 @@ public class Controller {
         }
     }
 
-    public Definition getDefinitionFromRequest(String wordType, DictionaryProject.Request request){
+    public Definition getDefinitionFromRequest(String wordType, Request request){
         switch (wordType){
             case "adjective" -> { return new AdjDefinitionFactory().createDefinition(
                     request.getParams().get(1),
@@ -147,14 +138,7 @@ public class Controller {
 
     public void handleExport() {
         service.export();
-//        String path1 = "/dicts/eng-vie.txt";
-//        String data ="sadsa";
-//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path1))){
-//            writer.write(data);
-//
-//        } catch (IOException e){
-//            System.out.println("An error happens "+ e.getMessage());
-//        }
+
     }
 
 
