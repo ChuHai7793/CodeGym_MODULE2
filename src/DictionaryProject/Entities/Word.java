@@ -8,7 +8,12 @@ public class Word {
     private LinkedList<Definition> definitions;
     private LinkedList<String> pronunciations,synonyms;
 
-    public Word(){};
+    public Word(){
+        this.text = "";
+        this.pronunciations = new LinkedList<>();
+        this.definitions = new LinkedList<>();
+        this.synonyms = new LinkedList<>();
+    };
 
     public Word(String text, LinkedList<String> pronunciations,LinkedList<Definition> definitions, LinkedList<String> synonyms) {
         this.text = text;

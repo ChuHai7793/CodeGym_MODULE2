@@ -2,6 +2,12 @@ package DictionaryProject;
 
 import DictionaryProject.Entities.*;
 
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Controller {
     private final DefinitionFactory adjDefinitionFactory = new AdjDefinitionFactory();
     private final DefinitionFactory nounDefinitionFactory = new NounDefinitionFactory();
@@ -15,45 +21,138 @@ public class Controller {
 
         switch (request.getAction()) {
             case "lookup" -> handleLookup(request.getKeyword());
-            case "define" -> handleDefine();
-            case "drop" -> handleDrop();
+            case "define" -> handleDefine(request);
+            case "drop" -> handleDrop(request.getKeyword());
             case "export" -> handleExport();
-            default -> System.out.println("UNKNOWN ACTION");
+            default -> System.out.println("UNKNOWN ACTION or WRONG SYNTAX!");
         }
     }
 
+    /*----------------------------------------- LOOKUP ---------------------------------------------*/
     public void handleLookup(String keyword) {
 
         Word word = service.lookupWord(keyword);
-        System.out.print("@ " + word.getText() + "  ");
+        if (word!= null){
+            System.out.print("@ " + word.getText() + "  ");
 
-        for (String pronunciation : word.getPronunciations()) {
-            System.out.print(pronunciation+ "  ");
+            for (String pronunciation : word.getPronunciations()) {
+                System.out.print("/"+pronunciation+"/  ");
+            }
+            System.out.println();
+
+            for (Definition definition : word.getDefinitions()) {
+                System.out.println("* " + definition.getWordType());
+                System.out.println("- " + definition.getMeaning());
+                System.out.println("= " + definition.getSentence());
+                System.out.println("= " + definition.getSentenceMeaning());
+            }
+
+            System.out.println("* Synonym");
+            for (String synonym : word.getSynonyms()) {
+                System.out.println("- " + synonym);
+            }
+        } else {
+            System.out.println(keyword+" doesn't exist in dictionary");
         }
-        System.out.println();
-
-        for (Definition definition : word.getDefinitions()) {
-            System.out.println("* " + definition.getWordType());
-            System.out.println("- " + definition.getMeaning());
-            System.out.println("= " + definition.getSentence());
-            System.out.println("= " + definition.getSentenceMeaning());
-        }
-
-        System.out.println("* Synonym");
-        for (String synonym : word.getSynonyms()) {
-            System.out.println("- " + synonym);
-        }
-
-
     }
 
-    public void handleDefine() {
+
+
+    /*----------------------------------------- DEFINE ---------------------------------------------*/
+    public String getWordTypeFromRequest(Request request){
+        switch (request.getParams().getFirst()){
+            case "--adjective","-a" -> {
+                return "adjective";
+            }
+            case "--noun", "-n" -> {
+                return "noun";
+            }
+            case "--verb","-v" -> {
+                return "verb";
+            }
+            case "--pronunciation","-p" -> {
+                return "pronunciation";
+            }
+            case "--synonym","-s" -> {
+                return "synonym";
+            }
+            default -> {
+                return  "";
+            }
+        }
     }
 
-    public void handleDrop() {
+    public Definition getDefinitionFromRequest(String wordType,Request request){
+        switch (wordType){
+            case "adjective" -> { return new AdjDefinitionFactory().createDefinition(
+                    request.getParams().get(1),
+                    request.getParams().get(2),
+                    request.getParams().get(3)
+            );}
+            case "noun" -> { return new NounDefinitionFactory().createDefinition(
+                    request.getParams().get(1),
+                    request.getParams().get(2),
+                    request.getParams().get(3)
+            );}
+            case "verb" -> { return new VerbDefinitionFactory().createDefinition(
+                    request.getParams().get(1),
+                    request.getParams().get(2),
+                    request.getParams().get(3)
+            );}
+            default -> {return null;}
+        }
     }
+
+    public void handleDefine(Request request) {
+        String wordType = getWordTypeFromRequest(request);
+
+        if (service.lookupWord(request.getKeyword()) == null){
+            if (wordType.isEmpty()){
+                System.out.println("Word type doesn't exist OR Wrong syntax");
+                return;
+            }
+            System.out.println("@"+request.getKeyword()+ " is not existed in database, created new one!");
+        }
+
+        switch (wordType){
+            case "pronunciation" -> {
+                request.requestMeaning(wordType);
+                service.addPronunciation(request.getKeyword(), request.getParams().get(1));
+            }
+            case "synonym" -> {
+                request.requestMeaning(wordType);
+                service.addSynonym(request.getKeyword(), request.getParams().get(1));
+            }
+
+            default -> {
+                request.requestAll(wordType);
+                Definition definition = getDefinitionFromRequest(wordType,request);
+                service.addDefinition(request.getKeyword(),definition);
+            }
+        }
+    }
+
+
+    /*----------------------------------------- DROP ---------------------------------------------*/
+    public void handleDrop(String keyword) {
+
+        service.dropWord(keyword);
+        System.out.println("@"+keyword +" dropped!");
+    }
+
+
+    /*----------------------------------------- EXPORT ---------------------------------------------*/
 
     public void handleExport() {
+        service.export();
+//        String path1 = "/dicts/eng-vie.txt";
+//        String data ="sadsa";
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path1))){
+//            writer.write(data);
+//
+//        } catch (IOException e){
+//            System.out.println("An error happens "+ e.getMessage());
+//        }
     }
 
 

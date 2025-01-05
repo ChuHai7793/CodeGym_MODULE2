@@ -1,9 +1,9 @@
 package DictionaryProject.Entities;
 
-public class NounDefinitionFactory implements DefinitionFactory{
+public class VerbDefinitionFactory implements DefinitionFactory{
 
     @Override
     public Definition createDefinition(String meaning,String sentence, String sentenceMeaning) {
-        return new Definition("noun",meaning,sentence,sentenceMeaning);
+        return new Definition("verb",meaning,sentence,sentenceMeaning);
     }
 }

@@ -16,21 +16,34 @@ public class Request {
     public Request(String command) {
         String[] commandElements = command.split("\\s");
 
-        if (commandElements.length == 2){
-            this.action = commandElements[0];
-            this.keyword = commandElements[1];
-            this.params.add("");
-        } else if(commandElements.length==3){
-            this.action = commandElements[0];
-            this.params.add(commandElements[1]);
-            this.keyword = commandElements[2];
-        }
 
+        switch (commandElements.length){
+            case 1 -> {
+                this.action = commandElements[0];
+                this.keyword = "";
+                this.params.add("");
+            }
+            case 2 -> {
+                this.action = commandElements[0];
+                this.keyword = commandElements[1];
+                this.params.add("");
+            }
+            case 3 -> {
+                this.action = commandElements[0];
+                this.params.add(commandElements[1]);
+                this.keyword = commandElements[2];
+            }
+            default -> {
+                this.action = "";
+                this.params.add("");
+                this.keyword = "";
+            }
+        }
     }
     //-----------------------------------------------------------------------------------------------
-    public void requestDefinition(String prefix){
+    public void requestMeaning(String prefix){
         Scanner scanner = new Scanner(System.in);
-        System.out.print(prefix+" Definition: ");
+        System.out.print(prefix.toUpperCase()+" Definition: ");
         this.params.add(scanner.nextLine());
     }
 
@@ -45,6 +58,16 @@ public class Request {
         System.out.print("Sentence Meaning: ");
         this.params.add(scanner.nextLine());
 
+    }
+
+    public void requestAll(String wordType){
+        requestMeaning(wordType.toUpperCase());
+        requestSentence();
+        if (!this.params.get(2).isEmpty()){ // If there is sentence then request sentence meaning
+            this.requestSentenceMeaning();
+        } else {
+            this.params.add("");
+        }
     }
 
 
