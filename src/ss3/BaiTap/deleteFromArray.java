@@ -15,7 +15,10 @@ public class deleteFromArray {
         boolean delIndex = false;
         for (int i = 0; i < arr.length - 1; i++) {
             if (!delIndex) {
-
+                if(i==arr.length-2){
+                    System.out.println("NOT FOUND");
+                    return null;
+                }
                 if (arr[i] == delElement) {
                     delIndex = true;
                     newArr[i] = arr[i + 1];
@@ -24,6 +27,7 @@ public class deleteFromArray {
                 newArr[i] = arr[i];
             } else {
                 newArr[i] = arr[i + 1];
+
             }
         }
 
