@@ -37,15 +37,18 @@ public class deleteFromArray {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Nhap vi tri phan tu muon xoa");
+        System.out.println("Nhap phan tu muon xoa");
         int delElement = scanner.nextInt();
         boolean delIndex = false;
         for (int i = 0; i< arr.length-1;i++){
             if(delIndex == false) {
-                newArr[i] = arr[i];
+
                 if (arr[i] == delElement) {
                     delIndex = true;
+                    newArr[i] = arr[i+1];
+                    continue;
                 }
+                newArr[i] = arr[i];
             }else {
                 newArr[i] = arr[i+1];
             }
