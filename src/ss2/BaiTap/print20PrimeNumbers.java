@@ -6,27 +6,15 @@ import java.util.Scanner;
 
 public class print20PrimeNumbers {
     static Boolean PrimeCheck (int number) {
-
-        if (number < 2) {
-            System.out.println(number + "is not a number");
-        } else {
+        if (number >= 2) {
             int i = 2;
-            boolean check = true;
-
             while (i < number) {
                 if (number % i == 0) {
-                    check = false;
-                    break;
+                    return false;
                 }
                 i++;
             }
-            if (check) {
-                System.out.println(number + " is a prime number");
-                return true;
-            } else {
-//                System.out.println("not a prime number");
-            }
-            return check;
+            return true;
         }
         return false;
     }
@@ -45,6 +33,7 @@ public class print20PrimeNumbers {
         while (count < numbers) {
             if (PrimeCheck(N)){
                 count++;
+                System.out.println(N + " is a prime number");
             };
             N++;
             }

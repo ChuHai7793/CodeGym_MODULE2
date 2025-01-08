@@ -1,7 +1,9 @@
 package ss2.BaiTap;
 
 
-public class Display_Geometry {
+import java.util.Scanner;
+
+public class DisplayGeometry {
     public static void main(String[] args) {
 
         // BAI 1
@@ -41,18 +43,6 @@ public class Display_Geometry {
 //        }
 
         // BAI 4
-//        String str;
-//        for(int i=6;i>=1;i--){
-//            str = "";
-//            for (int j=1; j<i; j++) {
-//                str = str.concat("*");
-//            }
-//            System.out.println(str);
-//        }
-
-        // BAI 5
-
-        String str;
 
         for (int i = 0; i < 5; i++) {
             String str1 = "";
