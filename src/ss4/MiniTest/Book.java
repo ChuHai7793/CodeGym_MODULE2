@@ -1,12 +1,15 @@
 package ss4.MiniTest;
 
 public class Book {
-    private int bookCode, price;
-    private String   name, author;
+    private int bookCode;
+    private double  price;
+    private String name, author;
+
     public Book() {
 
     }
-    public Book( int bookCode,String name, int price,String author) {
+
+    public Book(int bookCode, String name, double price, String author) {
         this.bookCode = bookCode;
         this.name = name;
         this.price = price;
@@ -21,7 +24,7 @@ public class Book {
         return name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -37,7 +40,7 @@ public class Book {
         this.name = name;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

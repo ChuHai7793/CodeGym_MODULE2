@@ -22,9 +22,14 @@ public class BookMain {
         Book book6 = new Book(6,"bookF",184,"Minh");
 
         Book[] booksArr = {book1,book2,book3,book4,book5,book6};
+
+
+        double sum = 0;
+        for (Book book:booksArr){
+            sum += book.getPrice();
+        }
         System.out.println("Tong 6 cuon sach la:");
-        System.out.println(book1.getPrice()+book2.getPrice()+book3.getPrice()+book4.getPrice()+book5.getPrice()
-                            +book6.getPrice());
+        System.out.println(sum);
 
         System.out.println("Sach co gia tren 100");
         for (Book book: booksArr){
