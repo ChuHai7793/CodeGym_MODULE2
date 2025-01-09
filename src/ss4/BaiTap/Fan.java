@@ -16,6 +16,7 @@ public class Fan {
         this.color = "blue";
     }
 
+    @Override
     public String toString(){
 
         if ( this.on){

@@ -1,7 +1,13 @@
 package ss3.BaiTap;
 
 public class symmetricArray {
-    public static void main(String[] args) {
+
+    public  void  method1(int a){  }
+
+
+//    public static void main(String[] args) {
+//        int[] a = {1,2,3,4,5,6,7,8,9},
+
 
 //        int[] arr = {1,2,3,4,4,3,2,1};
 
@@ -14,5 +20,6 @@ public class symmetricArray {
 //        }
 //        System.out.println("Symetrical");
 
-    }
+//    }
+
 }

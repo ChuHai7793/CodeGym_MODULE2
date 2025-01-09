@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class deleteFromArray {
 
-    static public int[] deleteFromArray(int[] arr) {
+    public static  int[] deleteFromArr(int[] arr) {
         int[] newArr = new int[arr.length - 1];
 
         Scanner scanner = new Scanner(System.in);
@@ -27,10 +27,8 @@ public class deleteFromArray {
                 newArr[i] = arr[i];
             } else {
                 newArr[i] = arr[i + 1];
-
             }
         }
-
         for (int j = 0; j < newArr.length; j++) {
             System.out.println(newArr[j]);
         }
@@ -41,7 +39,7 @@ public class deleteFromArray {
 
 
         int[] arr = {1, 2, 3, 4, 5};
-        int[] newArr = deleteFromArray(arr);
+        int[] newArr = deleteFromArr(arr);
 
     }
 }
