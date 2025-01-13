@@ -12,6 +12,26 @@ public class BookMain {
         }
         return null;
     }
+
+    public static Book[] filterBook(Book[] books, int price) {
+//        dem so luong phan tu trong mang moi
+        int count = 0;
+        for (Book book : books) {
+            if (book.getPrice() > price) {
+                count++;
+            }
+        }
+//        sao chep sang mang moi
+        Book[] result = new Book[count];
+        int target=0;
+        for (int i = 0; i < books.length; i++) {
+            if (books[i].getPrice() > price) {
+                result[target] = books[i];
+                target++;
+            }
+        }
+        return result;
+    }
     public static void main(String[] args) {
 
         Book book1 = new Book(1,"bookA",123,"Nam");
@@ -47,5 +67,6 @@ public class BookMain {
 
         System.out.println("Tim ten sach co Code 4:");
         System.out.println(findBook(booksArr,4));
+        
     }
 }
