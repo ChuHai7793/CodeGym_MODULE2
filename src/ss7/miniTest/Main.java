@@ -34,7 +34,7 @@ public class Main {
         return underpaidEmployees;
     }
 
-    public static double calAllPartTimeSalary(Employee[] employees) {
+    public static double calcAllPartTimeSalary(Employee[] employees) {
         double partTimeSalary = 0;
         for (Employee employee : employees) {
             if (employee instanceof PartTimeEmployee) {
@@ -83,18 +83,31 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Employee[] employees = new Employee[5];
+        Employee[] employees = new Employee[7];
 
         employees[0] = new FullTimeEmployee("A","A","A","A","A",1000,100,10000);
         employees[1] = new FullTimeEmployee("B","A","A","A","A",1000,200,20000);
         employees[2] = new FullTimeEmployee("C","A","A","A","A",1000,300,25000);
         employees[3] = new FullTimeEmployee("D","A","A","A","A",1000,400,15000);
+        employees[4]= new PartTimeEmployee("E","A","A","A","A",10);
+        employees[5]= new PartTimeEmployee("F","A","A","A","A",20);
+        employees[6]= new PartTimeEmployee("G","A","A","A","A",30);
 
+
+        System.out.println("Ma so nhan vien luong thap la:");
+        Employee[] underpaidEmployeeList = listUnderpaidFullTimeEmployees(employees);
+        for (Employee employee:underpaidEmployeeList){
+            System.out.print(((FullTimeEmployee) employee).getCode()+ " ");
+        }
+        System.out.println();
+
+
+        System.out.println("TONG TIEN NHAN VIEN BAN THOI GIAN:"+calcAllPartTimeSalary(employees));
 
         Employee[] sortEmployees =  sortFullTimeSalary(employees);
-
+        System.out.println("Ma so nhan vien tu be den lon la:");
         for (Employee employee:sortEmployees){
-            System.out.println(((FullTimeEmployee) employee).getCode());
+            System.out.print(((FullTimeEmployee) employee).getCode()+ " ");
         }
 
     }
