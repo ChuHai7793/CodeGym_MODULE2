@@ -1,4 +1,4 @@
-package ss7.miniTest;
+package ss7.miniTest3;
 
 public class PartTimeEmployee extends Employee {
     String code, name, age, tel, email;

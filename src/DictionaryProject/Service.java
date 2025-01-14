@@ -48,6 +48,7 @@ public class Service {
             word.setText(keyword);
             this.dictionary.put(keyword,word);
         }
+        
         word.getDefinitions().add(definition);
     }
 
