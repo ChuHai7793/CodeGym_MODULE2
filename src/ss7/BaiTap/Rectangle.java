@@ -1,6 +1,6 @@
 package ss7.BaiTap;
 
-public class Rectangle extends Shape implements Resizable {
+public class Rectangle extends Shape implements Resizable,Colorable{
     private double width = 1.0;
     private double length = 1.0;
 
@@ -60,4 +60,8 @@ public class Rectangle extends Shape implements Resizable {
     }
 
 
+    @Override
+    public void howToColor() {
+        System.out.println("Colored Rectangle");
+    }
 }
