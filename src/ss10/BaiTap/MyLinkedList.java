@@ -4,7 +4,7 @@ public class MyLinkedList<E> {
     private  Node head;
     private  int numNodes;
 
-    public MyLinkedList(Object data) {
+    public MyLinkedList(E data) {
         head = new Node(data);
         numNodes++;
     }
@@ -22,7 +22,7 @@ public class MyLinkedList<E> {
         }
     }
 
-    public void add(int index, Object data) {
+    public void add(int index, E data) {
         Node temp = head;
         Node holder;
 
@@ -35,14 +35,14 @@ public class MyLinkedList<E> {
         numNodes++;
     }
 
-    public void addFirst(Object data) {
+    public void addFirst(E data) {
         Node temp = head;
         head = new Node(data);
         head.next = temp;
         numNodes++;
     }
 
-    public void addLast(Object data){
+    public void addLast(E data){
         Node temp = head;
         for(int i=0; i < numNodes; i++) {
             if ( temp.next == null){

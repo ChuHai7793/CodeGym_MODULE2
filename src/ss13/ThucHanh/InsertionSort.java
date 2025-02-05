@@ -17,7 +17,7 @@ public class InsertionSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 5, 3, 4, 8, 15, 2, 61};
+        int[] arr = {1, 5, 3, 4, 2, 61};
         insertionSort(arr);
         for (int i : arr) {
             System.out.println(i);

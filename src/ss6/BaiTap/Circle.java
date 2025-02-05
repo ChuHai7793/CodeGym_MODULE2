@@ -18,6 +18,7 @@ public class Circle {
         this.filled = true;
     }
 
+
     public String toString() {
         return "Radius is: " + this.radius + ", Color is: " + this.color;
     }

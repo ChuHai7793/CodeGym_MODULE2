@@ -4,6 +4,7 @@ public class IllegalTriangleExceptionTest {
 
     public static class IllegalTriangleException extends Exception{
         public IllegalTriangleException(){
+            super("Illegal triangle exception");
         }
     }
     // Method to check if three sides form a triangle
@@ -15,19 +16,18 @@ public class IllegalTriangleExceptionTest {
 
     public static void main(String[] args){
         try{
-            double side1 = 3, side2 = 4, side3 = 5; // Valid triangle
-            double side4 = 1, side5 = 2, side6 = 3; // Not a triangle
-            if (!isTriangle(side4,side5,side6)){
+//            double side1 = 3, side2 = 4, side3 = 5; // Valid triangle
+            double side1 = 1, side2 = 2, side3 = 3; // Not a triangle
+            if (!isTriangle(side1,side2,side3)){
                 throw new IllegalTriangleException();
             }
-
+            System.out.print("VALID TRIANGLE");
 
         } catch(IllegalTriangleException e){
-            System.out.println("LOI");
+            System.out.println(e.getMessage());
         }
 
     }
-    int b= 2;
-    Integer a =1;
+
 
 }

@@ -1,10 +1,11 @@
 package ss10.BaiTap;
 
+import java.util.ArrayList;
+
 public class MyListTest {
     public static void main(String[] args) throws CloneNotSupportedException {
 
         MyList<Integer> l = new MyList<Integer>(4);
-
         l.add(30);
         l.add(40);
         l.add(50);
